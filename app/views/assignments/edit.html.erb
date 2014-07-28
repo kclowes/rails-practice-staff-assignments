@@ -1,0 +1,19 @@
+Edit <%= "#{ @person.first_name} " "#{@person.last_name}'s" %> Location
+
+<%= form_for [@person, @assignment] do |f| %>
+  <% if @person.errors.any? || @assignment.errors.any? %>
+    <% @person.errors.full_messages.each do |msg| %>
+      <%= msg %>
+    <% end %>
+    <% @assignment.errors.full_messages.each do |msg| %>
+      <%= msg %>
+    <% end %>
+  <% end %>
+
+  <%= f.collection_select(:location_id, Location.order(:name), :id, :name, prompt: true) %>
+
+  <%= f.label :role %>
+  <%= f.text_field :role %>
+
+  <%= f.submit 'Update' %>
+<% end %>

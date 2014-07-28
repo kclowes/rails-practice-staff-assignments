@@ -1,12 +1,9 @@
-<h1>Add a Staff Member</h1>
-
 <%= form_for @person do |f| %>
   <% if @person.errors.any? %>
     <% @person.errors.full_messages.each do |msg| %>
       <%= msg %>
     <% end %>
   <% end %>
-
   <div class="form-row">
     <%= f.label :title %>
     <%= f.text_field :title, autofocus: true, placeholder: "i.e. Dr." %>
@@ -25,5 +22,4 @@
   <div class="form-row">
     <%= f.submit %>
   </div>
-
 <% end %>

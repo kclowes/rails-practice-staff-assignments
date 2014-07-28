@@ -1,0 +1,17 @@
+<%= "#{@person.first_name} " "#{@person.last_name}" %>
+
+<%= link_to 'Edit', edit_person_path(@person) %>
+<%= link_to '+ Add Location', new_person_assignment_path(@person) %>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Location</th>
+    <th>Role</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render partial: 'assignment', collection: @person.assignments %>
+  </tbody>
+</table>
