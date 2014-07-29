@@ -1,19 +1,35 @@
-Edit <%= "#{ @person.first_name} " "#{@person.last_name}'s" %> Location
+<h1>Edit <%= "#{ @person.first_name} " "#{@person.last_name}'s" %> Location</h1>
 
 <%= form_for [@person, @assignment] do |f| %>
-  <% if @person.errors.any? || @assignment.errors.any? %>
-    <% @person.errors.full_messages.each do |msg| %>
-      <%= msg %>
-    <% end %>
-    <% @assignment.errors.full_messages.each do |msg| %>
-      <%= msg %>
-    <% end %>
+    <div class="errors">
+      <% if @person.errors.any? || @assignment.errors.any? %>
+        <div class="errors">
+          <h2>
+            <strong>
+              <%= "This assignment could not be created" %>
+            </strong>
+          </h2>
+        </div>
+        <% @person.errors.full_messages.each do |msg| %>
+          <%= msg %>
+        <% end %>
+        <% @assignment.errors.full_messages.each do |msg| %>
+          <%= msg %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="form-row">
+      <%= f.label :location %>
+      <%= f.collection_select(:location_id, Location.order(:name), :id, :name, prompt: true) %>
+    </div>
+
+    <div class="form-row">
+      <%= f.label :role %>
+      <%= f.text_field :role %>
+    </div>
+
+    <div class="form-row">
+      <%= f.submit 'Update' %>
+    </div>
   <% end %>
-
-  <%= f.collection_select(:location_id, Location.order(:name), :id, :name, prompt: true) %>
-
-  <%= f.label :role %>
-  <%= f.text_field :role %>
-
-  <%= f.submit 'Update' %>
-<% end %>

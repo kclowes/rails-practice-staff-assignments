@@ -2,8 +2,17 @@
 
 <%= form_for @person do |f| %>
   <% if @person.errors.any? %>
+    <div class="errors">
+      <h2>
+        <strong>
+          <%= "This person could not be created" %>
+        </strong>
+      </h2>
+    </div>
     <% @person.errors.full_messages.each do |msg| %>
-      <%= msg %>
+      <div class="errors">
+        <%= msg %>
+      </div>
     <% end %>
   <% end %>
 

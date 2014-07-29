@@ -7,7 +7,7 @@ class Person < ActiveRecord::Base
 
   def first_name_and_title
     if !first_name.present? && !title.present?
-      errors.add(:first_name, message: 'This person could not be created')
+      errors.add(:first_name, message: 'You must enter a title/last name, or a first/last name')
     end
   end
 

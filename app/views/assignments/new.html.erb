@@ -1,19 +1,37 @@
-Assign <%= "#{ @person.first_name} " "#{@person.last_name}" %> a Location
+<h1>Assign <%= "#{ @person.first_name} " "#{@person.last_name}" %> a Location</h1>
 
 <%= form_for [@person, @assignment] do |f| %>
   <% if @person.errors.any? || @assignment.errors.any? %>
+    <div class="errors">
+      <h2>
+        <strong>
+          <%= "This assignment could not be created" %>
+        </strong>
+      </h2>
+    </div>
     <% @person.errors.full_messages.each do |msg| %>
-      <%= msg %>
+      <div class="errors">
+        <%= msg %>
+      </div>
     <% end %>
     <% @assignment.errors.full_messages.each do |msg| %>
-      <%= msg %>
+      <div class="errors">
+        <%= msg %>
+      </div>
     <% end %>
   <% end %>
 
-  <%= f.collection_select(:location_id, Location.order(:name), :id, :name, prompt: true) %>
+  <div class="form-row">
+    <%= f.label :location %>
+    <%= f.collection_select(:location_id, Location.order(:name), :id, :name, prompt: true) %>
+  </div>
 
-  <%= f.label :role %>
-  <%= f.text_field :role %>
+  <div class="form-row">
+    <%= f.label :role %>
+    <%= f.text_field :role %>
+  </div>
 
-  <%= f.submit 'Assign' %>
+  <div class="form-row">
+    <%= f.submit 'Assign' %>
+  </div>
 <% end %>
